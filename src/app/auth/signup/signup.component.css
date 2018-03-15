@@ -1,0 +1,12 @@
+.help-block{
+	color:red;
+}
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+.has-error input{
+ 		border:1px solid red;
+ 		color:red;
+}
+ 

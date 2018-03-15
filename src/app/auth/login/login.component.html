@@ -1,0 +1,35 @@
+<div class="container">
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <p>&nbsp;</p>
+    <h2>Login</h2>
+    
+    <div class="alert alert-{{alertMessageType}}" *ngIf="alertMessage">
+        {{alertMessage}}
+    </div>
+
+    <form name="form" (ngSubmit)="login()" novalidate [formGroup]="myform">
+         
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.email.invalid && myform.controls.email.touched }">
+            <label for="email" class="control-label">Email</label>
+            <input type="email" class="form-control" email required id="email" placeholder="Enter email" name="email" formControlName="email">
+            <div class="help-block form-control-feedback" *ngIf="myform.controls.email.invalid && myform.controls.email.touched">
+            <p *ngIf="myform.controls.email.errors.required">Email is required</p>
+            <p *ngIf="myform.controls.email.errors.email && !myform.controls.email.errors.required">Email is not valid</p>
+            </div>
+        </div>
+
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.password.invalid &&  myform.controls.password.touched}">
+            <label for="password" class="control-label">Password</label>
+            <input type="password" id="password" class="form-control" name="password" formControlName="password" required />
+            <div *ngIf="myform.controls.password.invalid &&  myform.controls.password.touched" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="myform.invalid" class="btn btn-primary">Submit</button>
+             
+            <a [routerLink]="['/auth/signup']" class="btn btn-link">Register</a>
+        </div>
+    </form>
+</div>
+</div>
+</div>

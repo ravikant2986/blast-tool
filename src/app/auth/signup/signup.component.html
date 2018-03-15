@@ -1,0 +1,45 @@
+<div class="container">
+<div class="row">
+<div class="col-md-6 offset-md-3">
+	<p>&nbsp;</p>
+    <h2>Register</h2>
+    
+    <div class="alert alert-{{alertMessageType}}" *ngIf="alertMessage">
+        {{alertMessage}}
+    </div>
+
+    <form name="form" (ngSubmit)="register()" novalidate [formGroup]="myform">
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.first_name.invalid && myform.controls.first_name.touched }">
+            <label for="first_name" class="control-label">First Name</label>
+            <input type="text" id="first_name" formControlName="first_name" class="form-control" name="first_name"  required />
+            <div *ngIf="myform.controls.first_name.invalid && myform.controls.first_name.touched" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.last_name.invalid && myform.controls.last_name.touched }">
+            <label for="last_name" class="control-label">First Name</label>
+            <input type="text" id="last_name" formControlName="last_name" class="form-control" name="last_name"  required />
+            <div *ngIf="myform.controls.last_name.invalid && myform.controls.last_name.touched" class="help-block">Last Name is required</div>
+        </div>
+
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.email.invalid && myform.controls.email.touched }">
+            <label for="email" class="control-label">Email</label>
+            <input type="email" class="form-control" email required id="email" placeholder="Enter email" name="email" formControlName="email">
+            <div class="help-block form-control-feedback" *ngIf="myform.controls.email.invalid && myform.controls.email.touched">
+            <p *ngIf="myform.controls.email.errors.required">Email is required</p>
+            <p *ngIf="myform.controls.email.errors.email && !myform.controls.email.errors.required">Email is not valid</p>
+            </div>
+        </div>
+
+        <div class="form-group required" [ngClass]="{ 'has-error': myform.controls.password.invalid &&  myform.controls.password.touched}">
+            <label for="password" class="control-label">Password</label>
+            <input type="password" id="password" class="form-control" name="password" formControlName="password" required />
+            <div *ngIf="myform.controls.password.invalid &&  myform.controls.password.touched" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="myform.invalid" class="btn btn-primary">Register</button>
+             
+            <a [routerLink]="['/auth/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+</div>

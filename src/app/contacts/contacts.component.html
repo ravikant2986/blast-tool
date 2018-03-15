@@ -1,0 +1,46 @@
+ <div class="container" *ngIf="isLoaded">
+ 
+  <div class="alert alert-{{alertMessageType}}" *ngIf="alertMessage">
+      {{alertMessage}}
+  </div>
+
+ <div class="row" style="padding-top:10px;">
+    <div class="col-md-8">
+      <h2>Contacts</h2>
+    </div>
+
+    <div class="col-md-4">
+        <a routerLink="/contacts/add">Add Contact</a> &nbsp; &nbsp;  
+        <a routerLink="/contacts/import">Import Contacts</a> &nbsp; &nbsp;
+        <a href="javascript:void(0)" (click)="sendEmail()" *ngIf="contacts.length">Send Email</a>
+    </div>
+
+ </div>
+  
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor= "let contact of contacts">
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.last_name}}</td>
+        <td>{{contact.email}}</td>
+        <td>
+          <a [routerLink]="['./edit', contact._id]">Edit</a>
+          &nbsp;
+          <a href="javascript:viod(0)" (click)="delete(contact)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-pagination
+    [totalItems]="totalRecords" 
+    [pageSize]="pageSize" 
+    (pageChanged)="pageChanged($event)"></app-pagination>
+ </div>

@@ -1,0 +1,16 @@
+ <div class="container">
+	<h2>Import contacts from xlsx</h2>
+
+	<div class="alert alert-{{alertMessageType}}" *ngIf="alertMessage">
+  		{{alertMessage}}
+	</div>
+
+	<p>&nbsp;</p>
+	<form>
+	  <div class="form-group">
+	    <label for="file">Select File:</label>
+	    <input type="file" (change)="userFile($event)" placeholder="Upload file" accept=".xlsx">
+	  </div>
+	  <button type="button" class="btn btn-info" (click)="upload()" >Upload</button>
+</form>
+</div>

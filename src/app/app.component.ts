@@ -14,8 +14,8 @@ export class AppComponent {
   
   	subscription: Subscription;
   	user;
-
-    constructor(private router: Router, private auth : AuthService) { 
+   
+    constructor(private router: Router, public auth : AuthService) { 
  		 
       	var userObject = localStorage.getItem('user');
       	this.user = JSON.parse(userObject);

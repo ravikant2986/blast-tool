@@ -11,7 +11,7 @@ const app_routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
   { path: 'auth/login', component : LoginComponent},
   { path: 'auth/signup',component : SignupComponent},
-  { path: 'contacts', loadChildren :   () => ContactsModule },
+  { path: 'contacts', loadChildren :   () => ContactsModule }
    
 ];
 

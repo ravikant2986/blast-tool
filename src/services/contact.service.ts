@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { map, catchError } from 'rxjs/operators';
+ 
 
 
 import { API_ENDPOINT } from '../config'
@@ -19,7 +19,13 @@ export class ContactService {
     
   getUserContacts(userId, start:number, limit:number ) {
       
-      return this.http.get(API_ENDPOINT+'/contacts/'+userId+'/'+start+'/'+limit, httpOptions);
+      return this.http.get(API_ENDPOINT+'/contacts/'+userId+'/'+start+'/'+limit, httpOptions)
+        .pipe(
+            map(contacts => {
+                return contacts;
+            }),
+            catchError(this.handleError)
+        );
   }
 
   addUserContacts(userId,data) {
@@ -61,6 +67,17 @@ export class ContactService {
       return this.http.post(API_ENDPOINT+'/contacts/send-email/'+userId, body, httpOptions);
 
   }
+
+
+   private handleError(error: HttpErrorResponse) {
+        console.error('server error:', error);
+        if (error.error instanceof Error) {
+            const errMessage = error.error.message;
+            return Observable.throw(errMessage);
+        }
+        return Observable.throw(error || 'Node.js server error');
+  }
+
 
 
 

@@ -4,14 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
-import { ContactsModule } from './contacts/contacts.module';
+//import { ContactsModule } from './contacts/contacts.module';
 
 const app_routes: Routes = [
 
   { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
   { path: 'auth/login', component : LoginComponent},
   { path: 'auth/signup',component : SignupComponent},
-  { path: 'contacts', loadChildren :   () => ContactsModule }
+  { path: 'contacts', loadChildren :  './contacts/contacts.module#ContactsModule' }
+  //{ path: 'contacts', loadChildren :   () => ContactsModule }
    
 ];
 
